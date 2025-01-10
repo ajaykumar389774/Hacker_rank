@@ -1,0 +1,131 @@
+1. Java Strings Introduction
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        
+        Scanner sc=new Scanner(System.in);
+        String A=sc.next();
+        String B=sc.next();
+        
+        System.out.println(A.length() + B.length());
+        
+        if(A.compareTo(B)>0)
+        {
+            System.out.println("Yes");
+        }
+        else{
+            
+            System.out.println("No");
+            
+        }
+        
+        A = A.substring(0,1).toUpperCase()+A.substring(1);
+        B= B.substring(0,1).toUpperCase()+B.substring(1);
+        
+        System.out.println(A + " " + B);
+
+               
+    }
+}
+
+Sample Input 0
+
+hello
+java
+Sample Output 0
+
+9
+No
+Hello Java
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+2. Java Substring
+
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String S = in.next();
+        int start = in.nextInt();
+        int end = in.nextInt();
+        
+        System.out.println(S.substring(start,end));
+    }
+}
+
+Sample Input
+
+Helloworld
+3 7
+Sample Output
+
+lowo
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+3 . Java Substring Comparison
+
+
+import java.util.Scanner;
+
+public class Solution {
+
+    public static String getSmallestAndLargest(String s, int k) {
+        String smallest =s.substring(0,k);
+        String largest =s.substring(0,k);
+        
+        for(int i=1;i<s.length();i++)
+        {
+            if(i+k <= s.length())
+            {
+                String sub = s.substring(i,i+k);
+                if(sub.compareTo(smallest) < 0)
+                {
+                    smallest = sub;
+                }
+                else if(sub.compareTo(largest) > 0)
+                {
+                    largest = sub;
+                }
+            }
+        }
+        
+        
+        
+        return smallest + "\n" + largest;
+    }
+
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String s = scan.next();
+        int k = scan.nextInt();
+        scan.close();
+      
+        System.out.println(getSmallestAndLargest(s, k));
+    }
+}
+
+
+Sample Input 0
+
+welcometojava
+3
+Sample Output 0
+
+ava
+wel
