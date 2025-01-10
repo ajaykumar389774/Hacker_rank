@@ -296,4 +296,58 @@ India: Rs.12,324.13
 China: ￥12,324.13
 France: 12 324,13 €
 
+--------------------------------------------------------------------------------------------------------------------------------------------------
+7 . Java Date and Time
+
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+
+
+import java.util.Calendar;
+
+public class Solution {
+    public static String findDay(int month, int day, int year) {
+        Calendar c = Calendar.getInstance();
+        
+        c.set(year, month - 1, day);
+        
+        int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+        
+        String[] daysOfWeek = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+        
+        
+        return daysOfWeek[dayOfWeek - 1];
+    }
+
+    public static void main(String[] args) {
+    	
+    	Scanner sc = new Scanner(System.in);
+    	int month = sc.nextInt();
+    	int day = sc.nextInt();
+    	int year = sc.nextInt();
+    	
+    	System.out.println(month + " " + day + " " + year);
+        
+        System.out.println(findDay(month, day, year));  // Output: "Thursday"
+    }
+}
+
+Sample Input
+
+08 05 2015
+Sample Output
+
+WEDNESDAY
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
 
