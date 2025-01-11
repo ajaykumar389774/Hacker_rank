@@ -129,3 +129,242 @@ Sample Output 0
 
 ava
 wel
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+
+4. Java String Reverse
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        
+        int start =0;
+        int end = s.length()-1;
+        boolean flag = true;
+        while(start <= end)
+        {
+            if(s.charAt(start) != s.charAt(end))
+            {
+                flag=false;
+                break;
+            }
+            start++;
+            end--;
+        }
+        
+        if(flag)
+        {
+            System.out.println("Yes");
+        }
+        else
+        {
+            System.out.println("No");
+        }
+        
+        
+}}
+
+Another Method : 
+
+StringBuilder sc = new StringBuilder(s);
+if(sc.reverse().toString.equals(s))
+{
+   System.out.pritnln("Yes");
+}
+else
+{
+ System.out.pritnln("No");
+
+}
+
+
+
+
+
+
+
+
+
+Sample Input
+
+madam
+Sample Output
+
+Yes
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+5. Java Strings Anagrams
+
+
+mport java.util.Scanner;
+
+public class Solution {
+
+    static boolean isAnagram(String a, String b) {
+        
+        if(a.length() != b.length())
+        {
+            return false;
+        }
+        
+        char[] arr1 = a.toLowerCase().toCharArray();
+        char[] arr2 = b.toLowerCase().toCharArray();
+        
+        java.util.Arrays.sort(arr1);
+        java.util.Arrays.sort(arr2);
+        
+        return String.valueOf(arr1).equals(String.valueOf(arr2));
+        
+        
+        
+    }
+
+    public static void main(String[] args) {
+    
+        Scanner scan = new Scanner(System.in);
+        String a = scan.next();
+        String b = scan.next();
+        scan.close();
+        boolean ret = isAnagram(a, b);
+        if(ret)
+        {
+         System.out.println("Anagrams");
+        }
+        else{
+            System.out.pritnln("Not Anagrams");
+       }
+        System.out.println( (ret) ? "Anagrams" : "Not Anagrams" );
+    }
+}
+
+
+Another Method
+
+
+
+Sample Input 0
+
+anagram
+margana
+Sample Output 0
+
+Anagrams
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+
+6. Java String Tokens
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String s = scan.nextLine();
+        String [] arr = s.split("[\\s !,?._'@]+");
+        
+        int length = arr.length;
+        
+        for(String str : arr)
+        {
+           if(str.equals(""))
+           {
+            length--;
+           }    
+        }
+        
+        System.out.println(length);
+        
+        for(String str : arr)
+        
+        {
+            if(!str.equals(""))
+        {
+            System.out.println(str);
+        }
+        }
+        
+        scan.close();
+    }
+}
+
+Sample Input
+
+He is a very very good boy, isn't he?
+Sample Output
+
+10
+He
+is
+a
+very
+very
+good
+boy
+isn
+t
+he
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+7. Java Strings Pattern Syntax Checker
+
+
+import java.util.Scanner;
+import java.util.regex.*;
+
+public class Solution
+{
+	public static void main(String[] args){
+		Scanner in = new Scanner(System.in);
+		int testCases = Integer.parseInt(in.nextLine());
+		while(testCases>0){
+			String pattern = in.nextLine();
+            try{
+               Pattern p = Pattern.compile(pattern);
+               System.out.println("Valid");
+            }
+            catch(PatternSyntaxException e)
+            {
+                System.out.println("Invalid");
+            }
+            
+            testCases--;
+		}
+	}
+}
+
+
+Sample Input
+
+3
+([A-Z])(.+)
+[AZ[a-z](a-z)
+batcatpat(nat
+Sample Output
+
+Valid
+Invalid
+Invalid
