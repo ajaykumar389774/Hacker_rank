@@ -368,3 +368,229 @@ Sample Output
 Valid
 Invalid
 Invalid
+-----------------------------------------------------------------------------------------------------------------------------------
+11. Java Strings Java Regex
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.Scanner;
+
+class Solution{
+
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        while(in.hasNext()){
+            String IP = in.next();
+            System.out.println(IP.matches(new MyRegex().pattern));
+        }
+
+    }
+}
+
+class MyRegex{
+    
+    String pattern = "(([0-9]|[0-9][0-9]|(0|1)[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[0-9][0-9]|(0|1)[0-9][0-9]|2[0-4][0-9]|25[0-5])";
+    
+    
+     MyRegex()
+     
+     {
+        
+     }
+    
+}
+
+Sample Input
+
+000.12.12.034
+121.234.12.12
+23.45.12.56
+00.12.123.123123.123
+122.23
+Hello.IP
+Sample Output
+
+true
+true
+true
+false
+false
+false
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+8. Java Regex 2 - Duplicate Words
+
+\\b - Set Boundaries it will not take twice words (Example : GoodBye Bye ) Bye twice is there it will not take that
+\\w - it is used for characters (a-z,A-Z_0-9)
+\\W - ^\\w
+\\1
+
+find() it used to find next sequence in the pattern
+group() - get the input subsequence matched by the previous match result
+replaceAll() -  replaces every character in input with “:“. This is because “.” has a special meaning in regex: matching any character.
+The matcher() method is used to search for the pattern in a string. It returns a Matcher object which contains information about the search that was performed.
+Pattern.compile() method. The first parameter indicates which pattern is being searched for and the second parameter has a flag to indicates that the search should be case-insensitive.
+
+"\\b(\\w+)(\\W+\\1\\b)+"
+
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class DuplicateWords {
+
+    public static void main(String[] args) {
+
+        String regex = "\\b(\\w+)(\\W+\\1\\b)+";
+        Pattern p = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+
+        Scanner in = new Scanner(System.in);
+        int numSentences = Integer.parseInt(in.nextLine());
+        
+        while (numSentences-- > 0) {
+            String input = in.nextLine();
+            
+            Matcher m = p.matcher(input);
+            
+            // Check for subsequences of input that match the compiled pattern
+            while (m.find()) {
+                input = input.replaceAll(m.group(),m.group(1));
+            }
+            
+            // Prints the modified sentence.
+            System.out.println(input);
+        }
+        
+        in.close();
+    }
+}
+
+
+Sample Input
+
+5
+Goodbye bye bye world world world
+Sam went went to to to his business
+Reya is is the the best player in eye eye game
+in inthe
+Hello hello Ab aB
+Sample Output
+
+Goodbye bye world
+Sam went to his business
+Reya is the best player in eye game
+in inthe
+Hello Ab
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+9. Java Strings Valid Username Regular Expression
+
+"[a-zA-Z](\\w){7,29}"
+
+import java.util.Scanner;
+class UsernameValidator {
+    /*
+     * Write regular expression here.
+     */
+    public static final String regularExpression = "[a-zA-Z](\\w){7,29}";
+}
+
+
+public class Solution {
+    private static final Scanner scan = new Scanner(System.in);
+    
+    public static void main(String[] args) {
+        int n = Integer.parseInt(scan.nextLine());
+        while (n-- != 0) {
+            String userName = scan.nextLine();
+
+            if (userName.matches(UsernameValidator.regularExpression)) {
+                System.out.println("Valid");
+            } else {
+                System.out.println("Invalid");
+            }           
+        }
+    }
+}
+
+Sample Input 0
+
+8
+Julia
+Samantha
+Samantha_21
+1Samantha
+Samantha?10_2A
+JuliaZ007
+Julia@007
+_Julia007
+Sample Output 0
+
+Invalid
+Valid
+Valid
+Invalid
+Invalid
+Valid
+Invalid
+Invalid
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+10. Java Strings Tag Content Extractor
+
+"<(.+)>([^<]+)</\\1>"
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution{
+	public static void main(String[] args){
+		
+		Scanner in = new Scanner(System.in);
+		int testCases = Integer.parseInt(in.nextLine());
+		while(testCases>0){
+			String line = in.nextLine();
+			
+          	Pattern p = Pattern.compile("<(.+)>([^<]+)</\\1>");
+            Matcher m = p.matcher(line);
+            boolean flag=false;
+            while(m.find())
+            {
+                System.out.println(m.group(2));
+                flag=true;
+
+            }
+            
+            if(!flag)
+            {
+                System.out.println("None");
+            }
+			
+			testCases--;
+		}
+	}
+}
+
+Sample Input
+
+4
+<h1>Nayeem loves counseling</h1>
+<h1><h1>Sanjay has no watch</h1></h1><par>So wait for a while</par>
+<Amee>safat codes like a ninja</amee>
+<SA premium>Imtiaz has a secret crush</SA premium>
+Sample Output
+
+Nayeem loves counseling
+Sanjay has no watch
+So wait for a while
+None
+Imtiaz has a secret crush
